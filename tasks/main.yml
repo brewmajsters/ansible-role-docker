@@ -22,10 +22,17 @@
     url: "https://download.docker.com/linux/ubuntu/gpg"
   tags: install
 
+- name: retrieve the system architecture
+  become: true
+  changed_when: false
+  command: "dpkg --print-architecture"
+  register: dpkg_arch
+  tags: install
+
 - name: add docker repo to apt sources
   become: true
   apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+    repo: "deb [arch={{ dpkg_arch.stdout }}] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
   register: apt_repository
   tags: install
 
