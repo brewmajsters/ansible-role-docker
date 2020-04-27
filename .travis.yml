@@ -5,15 +5,18 @@ arch:
   - arm64
 
 os: linux
-dist: bionic
 
 language: python
 python:
   - "3.6"
 
+services:
+  - docker
+
+before_install:
+  - sudo apt install build-essential libssl-dev libffi-dev python3-dev
+
 install:
-  - pip search molecule
-  - pip search docker
   - pip install molecule docker
 
 script:
