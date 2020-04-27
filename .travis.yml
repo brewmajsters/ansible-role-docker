@@ -4,6 +4,9 @@ arch:
   - amd64
   - arm64
 
+os: linux
+dist: bionic
+
 language: python
 python:
   - "3.6"
