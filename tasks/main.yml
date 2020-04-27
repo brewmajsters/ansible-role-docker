@@ -32,7 +32,7 @@
 - name: add docker repo to apt sources
   become: true
   apt_repository:
-    repo: "deb [arch={{ dpkg_arch.stdout }}] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+    repo: "deb [arch={{ dpkg_arch.stdout }}] https://download.docker.com/linux/{{ ('arm' in dpkg_arch.stdout) | ternary('raspbian', 'debian') }} {{ ansible_distribution_release }} stable"
   register: apt_repository
   tags: install
 
