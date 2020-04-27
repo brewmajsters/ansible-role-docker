@@ -11,13 +11,9 @@ language: python
 python:
   - "3.6"
 
-services:
-  - docker
-
-before_install:
-  - apt install python3-pip
-
 install:
+  - pip search molecule
+  - pip search docker
   - pip install molecule docker
 
 script:
